@@ -1,0 +1,72 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            {% if userrequest %}
+                 {% comment %} <h1>{{ todos.count }} Current Todo{{ todos.count|pluralize }}</h1> {% endcomment %}
+            {% comment %} {% else %} {% endcomment %}
+                           <h1>Active Request</h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+<!-- New Code Start  -->
+        <iframe width="450" height="260" style="border: 1px solid cccccc;" src="https://thingspeak.com/channels/1945058/charts/1?bgcolor=%23ffffff&amp;color=%23d62020&amp;dynamic=true&amp;results=60&amp;title=Humidity&amp;type=line"&gt;&lt;></iframe>
+        <iframe width="450" height="260" style="border: 1px solid cccccc;" src="https://thingspeak.com/channels/1945058/charts/2?bgcolor=%23ffffff&amp;color=%23d62020&amp;dynamic=true&amp;results=60&amp;title=Temperature&amp;type=line"&gt;&lt;></iframe>
+        <br>
+<!-- New Code Ends -->
+        <div class="col-md-10">
+        {% if userrequest %}
+            {% comment %} <div class="list-group"> {% endcomment %}
+                {% comment %} <ul> {% endcomment %}
+                    {% for userrequest in userrequest %}
+                        {% if userrequest.datecompleted %}
+                            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                                <div class="card-header">
+                                    <b>Completed on {{ userrequest.datecompleted }}</b>
+                                </div>
+                                <div class="card-body">
+                                    <b>{{ userrequest.firstname }}</b>
+                                    <p class="card-text">
+                                    {% if userrequest.lastname %} 
+                                        {{ userrequest.lastname|truncatechars:30 }} - 
+                                        {{ userrequest.bloodgrp }}
+                                    {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                                <div class="card-header">
+                                    <b>Current</b>
+                                </div>
+                                <div class="card-body">
+                                    <b>{{ userrequest.firstname }}</b>
+                                    <p class="card-text">
+                                        {% if userrequest.lastname %}
+                                            {{ userrequest.lastname|truncatechars:30 }} - 
+                                            {{ userrequest.bloodgrp }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% comment %} <a href="{% url 'viewrequest' userrequest.id %}" class="list-group-item list-group-item-action"> <b>{{ userrequest.firstname }}</b>{% if userrequest.lastname %} - {{ userrequest.lastname|truncatechars:30 }}{% endif %}</a> {% endcomment %}
+                            {% comment %} {% if todo.important %} 
+                                list-group-item-danger
+                            {% endif %} {% endcomment %}                            
+                    {% endfor %}
+                {% comment %} </ul> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+        </div>
+        {% else %}
+        <div class="text-center">
+            <!-- <h2>Looks like we don't have any details yet.</h2> -->
+            <br>
+            {% comment %} <a role="button" class="btn btn-primary" href="{% url 'createtodo' %}">Donation</a> {% endcomment %}
+        </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

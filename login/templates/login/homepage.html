@@ -1,0 +1,23 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-7 text-center">
+                <h1>We welcome you to your Health Tracker WebApp</h1>
+            <br>
+            <p> "A Health Tracker that follow up with your Heart Rate, Body Temperature, Blood Oxygen Level and More"
+            </p>
+            <p> " Take care of your body. It's the only place you have to live in.        -- Jim Rohn"
+            </p>
+            <p> ----- The best investment you can ever make IS YOUR OWN HEALTH -----
+            </p>
+        <a role="button" class="btn btn-primary btn-lg" href="{% url 'signupuser' %}">Start</a>
+    </div>
+</div>
+
+{% endblock %}

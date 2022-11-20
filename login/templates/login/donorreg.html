@@ -1,0 +1,26 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+    <div class="row justify-content-left mt-4">
+        <div class="col-md-5">
+            <h2>Donar Registration</h2>
+        </div>
+    </div>
+    <div class="row justify-content- mt-2">
+        <div class="col-md-5">
+            {% if success %}
+                <div class="alert alert-success" role="alert">
+                    {{ success }}
+                </div>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <br>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
